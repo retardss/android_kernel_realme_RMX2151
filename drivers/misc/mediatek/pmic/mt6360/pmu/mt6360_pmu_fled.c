@@ -347,10 +347,10 @@ static int mt6360_fled_set_mode(struct rt_fled_dev *fled,
 	u8 en_bit = (fi->id == MT6360_FLED1) ? MT6360_FLCS1_EN_MASK :
 		    MT6360_FLCS2_EN_MASK;
 
-	dev_info(fi->dev, "%s set %s mutex_lock +\n", __func__,
+	dev_dbg(fi->dev, "%s set %s mutex_lock +\n", __func__,
 		flashlight_mode_str[mode]);
 	mutex_lock(&fled_lock);
-	dev_info(fi->dev, "%s set %s mutex_lock -\n", __func__,
+	dev_dbg(fi->dev, "%s set %s mutex_lock -\n", __func__,
 		flashlight_mode_str[mode]);
 	switch (mode) {
 	case FLASHLIGHT_MODE_TORCH:
@@ -452,10 +452,10 @@ static int mt6360_fled_set_mode(struct rt_fled_dev *fled,
 		return -EINVAL;
 	}
 	if (ret < 0)
-		dev_info(fi->dev, "%s set %s mode fail\n", __func__,
+		dev_dbg(fi->dev, "%s set %s mode fail\n", __func__,
 			 flashlight_mode_str[mode]);
 	else
-		dev_info(fi->dev, "%s set %s\n", __func__,
+		dev_dbg(fi->dev, "%s set %s\n", __func__,
 			 flashlight_mode_str[mode]);
 out:
 	mutex_unlock(&fled_lock);
@@ -782,7 +782,7 @@ static int mt6360_pmu_fled_probe(struct platform_device *pdev)
 							  mpfi->id, NULL, 0,
 							  NULL, 0);
 	}
-	dev_info(&pdev->dev, "%s: successfully probed\n", __func__);
+	dev_dbg(&pdev->dev, "%s: successfully probed\n", __func__);
 out:
 	return 0;
 }
